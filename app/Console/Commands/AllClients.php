@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 // tak delat nizzya!
-class All_Clients
+class AllClients
 {
     public function handle()
     {

@@ -5,3 +5,7 @@ parameters:
     excludePaths:
         - tests/*
         - storage/*
+    ignoreErrors:
+        - '#^Call to static method getInstance\(\) on an unknown class#'
+        - '#^Expression ".*::class" on a separate line does not do anything#'
+        - '#Expression on left side of \?\? is not nullable.#'

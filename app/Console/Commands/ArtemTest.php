@@ -32,7 +32,8 @@ class ArtemTest extends Command
         $c = $this::naGopeShert(1, 2);
         dump($c);
 
-        $this::creatContact_with_Deals_and_Tasks('Nastya', 'Sky', 'nastyaSky@gmail.com', 'Nastya2', '2021-12-31', 'Qualification', 'Nastya2', '2021-12-31', 'Not Started', 'High');
+        $this::createContactWithDealsAndTasks('Nastya', 'Sky', 'nastyaSky@gmail.com', 'Nastya2', '2021-12-31',
+        'Qualification', 'Nastya2', '2021-12-31', 'Not Started', 'High');
 
         $this::creatSubform('Zoho', '2020-12-31', '6317174000001468002');
 
@@ -43,9 +44,9 @@ class ArtemTest extends Command
 
         $this::searchContactsByCreatedDate(Carbon::now()->subWeeks(2)->toAtomString(), Carbon::now()->toAtomString());
 
-        $this::AddAttachment('6317174000001468002');
+        $this::addAttachment('6317174000001468002');
 
-        $this::DownloadAttachment('631717400000146800');
+        $this::downloadAttachment('631717400000146800');
 
         echo "hi " . date('Y-m-d H:i:s') . "\n";
         $this->line('Current time: ' . Carbon::now());
@@ -65,7 +66,7 @@ class ArtemTest extends Command
         dump($deals);
     }
 
-    public static function DownloadAttachment($zohoId)
+    public static function downloadAttachment($zohoId)
     {
         try {
             $attachments = ZohoCrmApi::getInstance()
@@ -79,7 +80,7 @@ class ArtemTest extends Command
         }
     }
 
-    public static function AddAttachment($zohoId)
+    public static function addAttachment($zohoId)
     {
         try {
             $attachments = ZohoCrmApi::getInstance()
@@ -204,7 +205,7 @@ class ArtemTest extends Command
         dump($record);
     }
 
-    public static function creatContact_with_Deals_and_Tasks($first_name, $last_name, $email, $deal_name, $closing_date, $stage, $task_subject, $due_date, $status, $priority): void
+    public static function createContactWithDealsAndTasks($first_name, $last_name, $email, $deal_name, $closing_date, $stage, $task_subject, $due_date, $status, $priority): void
     {
         /**
             * Insert new record to Contacts module

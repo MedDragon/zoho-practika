@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class zoho_data extends Model
+class zohoData extends Model
 {
     use HasFactory;
 
@@ -28,7 +28,7 @@ class zoho_data extends Model
     {
         dump($data['id']);
         dump(ZohoDataManager::formatDataForDB($data));
-        return zoho_data::query()->updateOrCreate(
+        return zohoData::query()->updateOrCreate(
             ['zohoID' => $data['id']],
             ZohoDataManager::formatDataForDB($data)
         );
@@ -36,7 +36,7 @@ class zoho_data extends Model
 
     public static function deleteFromDB($id = null)
     {
-        return zoho_data::query()
+        return zohoData::query()
             ->where('zohoID', '=', $id)
             ->delete();
     }

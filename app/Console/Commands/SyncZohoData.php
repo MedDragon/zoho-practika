@@ -6,7 +6,7 @@ use App\Models\DataDeals;
 use App\Manager\ZohoDataManager;
 use Illuminate\Console\Command;
 use ZohoCrmSDK\Api\ZohoCrmApi;
-use App\Models\zoho_data;
+use App\Models\zohoData;
 use Carbon\Carbon;
 
 class SyncZohoData extends Command
@@ -39,7 +39,7 @@ class SyncZohoData extends Command
         ->request();
 
         foreach ($zohoContacts as $contactData) {
-            (new zoho_data())->pushToDB($contactData);
+            (new zohoData())->pushToDB($contactData);
         }
 
         $zohoDeals = ZohoCrmApi::getInstance()
