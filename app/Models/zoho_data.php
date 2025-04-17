@@ -40,6 +40,4 @@ class zoho_data extends Model
             ->where('zohoID', '=', $id)
             ->delete();
     }
-
-
 }

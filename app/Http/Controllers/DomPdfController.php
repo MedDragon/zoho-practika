@@ -12,7 +12,7 @@ class DomPdfController extends Controller
     {
 //        о print_r($data);
         $filePath = storage_path('app/public/invoice.pdf');
-        $pdf = Pdf::loadView('deal-pdf', ['data'=>$data]);
+        $pdf = Pdf::loadView('deal-pdf', ['data' => $data]);
         $pdf->save($filePath);
 
         $accID = $data[0]['deal']['Account_Name']['id'];

@@ -36,5 +36,4 @@ class WebhookController extends Controller
             'status' => '200',
         ]);
     }
-
 }

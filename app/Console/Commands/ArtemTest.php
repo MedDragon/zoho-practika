@@ -41,7 +41,7 @@ class ArtemTest extends Command
 
         $this::COQLDATAREC();
 
-        $this::searchContactsByCreatedDate(Carbon::now()->subWeeks(2)->toAtomString(),Carbon::now()->toAtomString());
+        $this::searchContactsByCreatedDate(Carbon::now()->subWeeks(2)->toAtomString(), Carbon::now()->toAtomString());
 
         $this::AddAttachment('6317174000001468002');
 
@@ -52,12 +52,6 @@ class ArtemTest extends Command
 
 
         $this::getContacts();
-
-
-
-
-
-
     }
 
     public static function getContacts($page = 1, $perPage = 40)
@@ -227,7 +221,7 @@ class ArtemTest extends Command
         echo 'id = ' , $id;
         dump($record);
         echo '-------------------------------';
-        if($record[0]) {
+        if ($record[0]) {
             $record = ZohoCrmApi::getInstance()
                 ->setModule('Deals')
                 ->records()
@@ -241,11 +235,12 @@ class ArtemTest extends Command
             echo 'id = ' , $id;
             dump($record);
             echo '+++++++++++++++++++++++++++++\n';
-        }else{
-            echo "Error 1!";}
+        } else {
+            echo "Error 1!";
+        }
 
         echo $record[0];
-        if($record[0]) {
+        if ($record[0]) {
             $record = ZohoCrmApi::getInstance()
                 ->setModule('Tasks')
                 ->records()
@@ -260,8 +255,9 @@ class ArtemTest extends Command
             echo 'id = ' , $id;
             dump($record);
             echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n';
-        }else{
-            echo "Error 2!";}
+        } else {
+            echo "Error 2!";
+        }
     }
 
     /**

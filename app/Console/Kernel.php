@@ -17,8 +17,6 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('app:get-zoho-credited-items:run')->everyMinute();
 //        $schedule->command('app:get-zoho-credited-items')->hourlyAt(45);
         $schedule->command('app:sync-zoho-data')->everyMinute();
-
-
     }
 
     /**
@@ -26,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
 

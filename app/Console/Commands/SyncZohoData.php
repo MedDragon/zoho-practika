@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-
 use App\Models\DataDeals;
 use App\Manager\ZohoDataManager;
 use Illuminate\Console\Command;
