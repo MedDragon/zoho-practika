@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Команда для синхронізації даних з Zoho CRM.
+ *
+ * Цей клас відповідає за отримання даних з Zoho CRM (контакти та угоди)
+ * і збереження їх у базі даних.
+ *
+ * @package App\Console\Commands
+ */
+
 namespace App\Console\Commands;
 
 use App\Models\DataDeals;
@@ -12,31 +21,35 @@ use Carbon\Carbon;
 class SyncZohoData extends Command
 {
     /**
-     * The name and signature of the console command.
+     * Назва та підпис команди консолі.
      *
      * @var string
      */
-        protected $signature = 'app:sync-zoho-data';
+    protected $signature = 'app:sync-zoho-data';
 
     /**
-     * The console command description.
+     * Опис команди.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Синхронізація даних з Zoho CRM для контактів та угод.';
 
     /**
-     * Execute the console command.
+     * Виконання команди консолі.
+     *
+     * Цей метод отримує оновлені контакти та угоди з Zoho CRM
+     * і зберігає їх у базі даних.
+     *
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-
         $zohoContacts = ZohoCrmApi::getInstance()
             ->setModule('Contacts')
             ->records()
             ->getRecords()
             ->modifiedAfter(now()->subHours(1))
-        ->request();
+            ->request();
 
         foreach ($zohoContacts as $contactData) {
             (new zohoData())->pushToDB($contactData);
@@ -47,10 +60,10 @@ class SyncZohoData extends Command
             ->records()
             ->getRecords()
             ->modifiedAfter(now()->subHours(1))
-        ->request();
+            ->request();
 
         foreach ($zohoDeals as $dealData) {
             (new DataDeals())->pushToDB($dealData);
         }
-    }
-}
+    }//end handle()
+}//end class

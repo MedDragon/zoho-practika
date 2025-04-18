@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * HTTP Kernel
+ *
+ * This class is responsible for handling HTTP requests in the application.
+ * It defines the global middleware stack, route middleware groups, and middleware aliases.
+ *
+ * @package App\Http
+ */
+
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -65,4 +74,4 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
-}
+}//end class

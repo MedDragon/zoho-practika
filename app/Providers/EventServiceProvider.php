@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * EventServiceProvider
+ *
+ * This service provider is responsible for registering application event listeners
+ * and determining if events should be auto-discovered.
+ */
+
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
@@ -7,6 +14,11 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+/**
+ * Class EventServiceProvider
+ *
+ * @package App\Providers
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -22,17 +34,20 @@ class EventServiceProvider extends ServiceProvider
 
     /**
      * Register any events for your application.
+     *
+     * @return void
      */
     public function boot(): void
     {
-        //
-    }
+    }//end boot()
 
     /**
      * Determine if events and listeners should be automatically discovered.
+     *
+     * @return boolean
      */
     public function shouldDiscoverEvents(): bool
     {
         return false;
-    }
-}
+    }//end shouldDiscoverEvents()
+}//end class

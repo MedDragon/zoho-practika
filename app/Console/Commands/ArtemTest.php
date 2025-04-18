@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Тестова команда для роботи з API Zoho CRM.
+ *
+ * Цей клас виконує кілька операцій з даними в CRM-системі, включаючи створення контактів, додавання вкладень і пошук за датами.
+ *
+ * @package App\Console\Commands
+ */
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -10,63 +18,80 @@ use Carbon\Carbon;
 class ArtemTest extends Command
 {
     /**
-     * The name and signature of the console command.
+     * Назва та підпис команди консолі.
      *
      * @var string
      */
     protected $signature = 'app:artem-test';
 
     /**
-     * The console command description.
+     * Опис команди.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Тестова команда для виконання операцій з API Zoho CRM.';
 
     /**
-     * Execute the console command.
+     * Виконання команди консолі.
+     *
+     * Цей метод виконує серію тестових операцій в API.
+     *
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-
         $c = $this::naGopeShert(1, 2);
         dump($c);
 
-        $this::createContactWithDealsAndTasks('Nastya', 'Sky', 'nastyaSky@gmail.com', 'Nastya2', '2021-12-31',
-        'Qualification', 'Nastya2', '2021-12-31', 'Not Started', 'High');
+        $this::createContactWithDealsAndTasks(
+            'Nastya',
+            'Sky',
+            'nastyaSky@gmail.com',
+            'Nastya2',
+            '2021-12-31',
+            'Qualification',
+            'Nastya2',
+            '2021-12-31',
+            'Not Started',
+            'High'
+        );
 
         $this::creatSubform('Zoho', '2020-12-31', '6317174000001468002');
-
-
         $this::COQLDATA();
-
         $this::COQLDATAREC();
-
         $this::searchContactsByCreatedDate(Carbon::now()->subWeeks(2)->toAtomString(), Carbon::now()->toAtomString());
-
         $this::addAttachment('6317174000001468002');
-
         $this::downloadAttachment('631717400000146800');
-
         echo "hi " . date('Y-m-d H:i:s') . "\n";
         $this->line('Current time: ' . Carbon::now());
-
-
         $this::getContacts();
-    }
+    }//end handle()
 
-    public static function getContacts($page = 1, $perPage = 40)
+    /**
+     * Отримання контактів з Zoho CRM.
+     *
+     * @param integer $page    Номер сторінки.
+     * @param integer $perPage Кількість записів на сторінці.
+     * @return void
+     */
+    public static function getContacts($page = 1, $perPage = 40): void
     {
         $deals = ZohoCrmApi::getInstance()
             ->setModule('Deals')
             ->records()
-            ->getRecords() // Предполагаем, что есть связь с 'Deals'
+            ->getRecords()
             ->request();
 
         dump($deals);
-    }
+    }//end getContacts()
 
-    public static function downloadAttachment($zohoId)
+    /**
+     * Завантаження вкладення для контакту.
+     *
+     * @param string $zohoId Ідентифікатор контакту.
+     * @return void
+     */
+    public static function downloadAttachment($zohoId): void
     {
         try {
             $attachments = ZohoCrmApi::getInstance()
@@ -78,9 +103,15 @@ class ArtemTest extends Command
         } catch (\Exception $exception) {
             $attachments = null;
         }
-    }
+    }//end downloadAttachment()
 
-    public static function addAttachment($zohoId)
+    /**
+     * Додавання вкладення для контакту.
+     *
+     * @param string $zohoId Ідентифікатор контакту.
+     * @return void
+     */
+    public static function addAttachment($zohoId): void
     {
         try {
             $attachments = ZohoCrmApi::getInstance()
@@ -92,9 +123,16 @@ class ArtemTest extends Command
             $attachments = null;
             echo 'Problem';
         }
-    }
+    }//end addAttachment()
 
-    public static function searchContactsByCreatedDate($dateTime1, $dateTime2)
+    /**
+     * Пошук контактів за датою створення.
+     *
+     * @param string $dateTime1 Дата початку пошуку.
+     * @param string $dateTime2 Дата кінця пошуку.
+     * @return void
+     */
+    public static function searchContactsByCreatedDate($dateTime1, $dateTime2): void
     {
         $response = ZohoCrmApi::getInstance()
             ->setModule('Contacts')
@@ -109,22 +147,22 @@ class ArtemTest extends Command
             ->page(1)
             ->perPage(200)
             ->request();
-//        var_dump($response);
 
-        // Проверяем, что $response успешно получен
         if (is_array($response) && !empty($response)) {
-            // Выводим данные из объекта response->data
             foreach ($response as $contact) {
                 echo "Full Name: {$contact['Full_Name']}, Created Time: {$contact['Created_Time']}\n";
             }
         } else {
-            // Выводим ошибку или обрабатываем другим способом
             echo "Ошибка: неверный формат ответа от API";
-            return;
         }
-    }
+    }//end searchContactsByCreatedDate()
 
-    public static function COQLDATAREC($page = 1, $perPage = 40)
+    /**
+     * Виконання COQL запиту для отримання контактів.
+     *
+     * @return void
+     */
+    public static function COQLDATAREC($page = 1, $perPage = 40): void
     {
         $response = ZohoCrmApi::getInstance()
             ->setModule('Contacts')
@@ -138,29 +176,25 @@ class ArtemTest extends Command
             ->perPage($perPage)
             ->request();
 
-        // Проверяем, что $response является массивом и содержит данные
         if (is_array($response) && !empty($response)) {
-            // Выводим данные из массива
             foreach ($response as $contact) {
                 echo "Full Name: {$contact['Full_Name']}, Created Time: {$contact['Created_Time']}\n";
             }
 
-            // Проверяем, есть ли еще страницы данных
             if (count($response) === $perPage) {
-                // Рекурсивно вызываем функцию для следующей страницы
                 self::COQLDATAREC($page + 1, $perPage);
             }
         } else {
-            // Выводим ошибку или обрабатываем другим способом
             echo "Ошибка: пустой или неверный формат ответа от API";
-            return;
         }
-    }
+    }//end COQLDATAREC()
 
-
-
-
-    public static function COQLDATA()
+    /**
+     * Виконання COQL запиту для отримання контактів.
+     *
+     * @return void
+     */
+    public static function COQLDATA(): void
     {
         $response = ZohoCrmApi::getInstance()
             ->setModule('Contacts')
@@ -175,17 +209,23 @@ class ArtemTest extends Command
             ->request();
 
         if (is_array($response)) {
-            // Выводим данные из массива
             foreach ($response as $contact) {
                 echo "Full Name: {$contact['Full_Name']}, Created Time: {$contact['Created_Time']}\n";
             }
         } else {
-            // Выводим ошибку или обрабатываем другим способом
             echo "Ошибка: неверный формат ответа от API";
         }
-    }
+    }//end COQLDATA()
 
-    public static function creatSubform($name, $birthday, $id)
+    /**
+     * Створення субформи для контакту.
+     *
+     * @param string $name     Ім'я.
+     * @param string $birthday Дата народження.
+     * @param string $id       Ідентифікатор контакту.
+     * @return void
+     */
+    public static function creatSubform($name, $birthday, $id): void
     {
         $record = ZohoCrmApi::getInstance()
             ->setModule('Contacts')
@@ -203,13 +243,25 @@ class ArtemTest extends Command
             ])
             ->request();
         dump($record);
-    }
+    }//end creatSubform()
 
+    /**
+     * Створення контакту з угодами та завданнями.
+     *
+     * @param string $first_name   Ім'я.
+     * @param string $last_name    Прізвище.
+     * @param string $email        Адреса електронної пошти.
+     * @param string $deal_name    Назва угоди.
+     * @param string $closing_date Дата закриття угоди.
+     * @param string $stage        Стадія угоди.
+     * @param string $task_subject Тема завдання.
+     * @param string $due_date     Дата виконання завдання.
+     * @param string $status       Статус завдання.
+     * @param string $priority     Пріоритет завдання.
+     * @return void
+     */
     public static function createContactWithDealsAndTasks($first_name, $last_name, $email, $deal_name, $closing_date, $stage, $task_subject, $due_date, $status, $priority): void
     {
-        /**
-            * Insert new record to Contacts module
-            */
         $record = ZohoCrmApi::getInstance()
             ->setModule('Contacts')
             ->records()
@@ -259,15 +311,5 @@ class ArtemTest extends Command
         } else {
             echo "Error 2!";
         }
-    }
-
-    /**
-     * @param $a
-     * @param $b
-     * @return mixed
-     */
-    public static function naGopeShert($a, $b): mixed
-    {
-        return $a + $b;
-    }
-}
+    }//end createContactWithDealsAndTasks()
+}//end class

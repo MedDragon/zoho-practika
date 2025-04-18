@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * User Model
+ *
+ * This model represents a user in the application. It extends the default
+ * `Authenticatable` model and includes various traits for API token management
+ * and notification handling.
+ */
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -8,6 +16,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Class User
+ *
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -44,4 +57,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-}
+}//end class

@@ -1,20 +1,16 @@
 <?php
 
+/**
+ * Web routes for the application.
+ *
+ * These routes are loaded by the RouteServiceProvider within a group
+ * which contains the "web" middleware group.
+ */
+
 use Illuminate\Support\Facades\Route;
 use ZohoCrmSDK\Api\ZohoCrmApi;
 use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Storage;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     $search = ZohoCrmApi::getInstance()

@@ -1,10 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-
 /**
  * Контролер для роботи з обліковими записами
  *
@@ -14,6 +9,11 @@ use GuzzleHttp\Client;
  * @package App\Http\Controllers
  */
 
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+
 class AccountController extends Controller
 {
     /**
@@ -21,7 +21,6 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Contracts\View\View подання зі списком облікових записів
      */
-
     public function index()
     {
         $account = new Account();
@@ -34,5 +33,5 @@ class AccountController extends Controller
         $accounts = json_decode($response->getBody()->getContents(), true);
 
         return view('accounts.index', ['accounts' => $accounts['data']]);
-    }
-}
+    }//end index()
+}//end class

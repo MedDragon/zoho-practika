@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Обробник виключень для застосунку
+ *
+ * Цей клас відповідає за реєстрацію обробників виключень у застосунку.
+ *
+ * @package App\Exceptions
+ */
+
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -20,11 +28,12 @@ class Handler extends ExceptionHandler
 
     /**
      * Register the exception handling callbacks for the application.
+     *
+     * @return void
      */
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
         });
-    }
-}
+    }//end register()
+}//end class

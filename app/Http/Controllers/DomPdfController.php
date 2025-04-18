@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * DomPdf Controller
+ *
+ * This controller is responsible for generating a PDF document with the provided
+ * deal data and attaching it to a Zoho CRM account.
+ *
+ * @package App\Http\Controllers
+ */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -9,29 +18,30 @@ use ZohoCrmSDK\Api\ZohoCrmApi;
 class DomPdfController extends Controller
 {
     /**
-     * Генерує PDF-документ з переданими даними угод і прикріплює його до облікового запису Zoho.
+     * Generates a PDF document with the provided deal data and attaches it to
+     * a Zoho CRM account.
      *
-     * @param array $data Масив з інформацією про угоди.
-     * @return string Шлях до збереженого PDF-файлу.
+     * @param array $data An array containing information about the deals.
+     * @return string The file path to the saved PDF file.
      */
-    public function createPDF($data): string
+    public function createPDF(array $data): string
     {
-//        о print_r($data);
+        // Generate PDF from deal data.
         $filePath = storage_path('app/public/invoice.pdf');
         $pdf = Pdf::loadView('deal-pdf', ['data' => $data]);
         $pdf->save($filePath);
 
+        // Get the account ID from the deal data.
         $accID = $data[0]['deal']['Account_Name']['id'];
 
+        // Upload the generated PDF as an attachment to the account in Zoho CRM.
         $attachments = ZohoCrmApi::getInstance()
             ->setModule('Accounts')
             ->records()
             ->uploadAttachment($accID, $filePath)
             ->request();
 
-
-
-//        return $pdf->save('invoice.pdf');
+        // Return the file path to the saved PDF.
         return $filePath;
-    }
-}
+    }//end createPDF()
+}//end class

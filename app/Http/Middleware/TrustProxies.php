@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * TrustProxies Middleware
+ *
+ * This middleware is responsible for trusting the proxies for this application
+ * and detecting proxies based on specific headers.
+ */
+
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
@@ -17,7 +24,7 @@ class TrustProxies extends Middleware
     /**
      * The headers that should be used to detect proxies.
      *
-     * @var int
+     * @var integer
      */
     protected $headers =
         Request::HEADER_X_FORWARDED_FOR |
@@ -25,4 +32,4 @@ class TrustProxies extends Middleware
         Request::HEADER_X_FORWARDED_PORT |
         Request::HEADER_X_FORWARDED_PROTO |
         Request::HEADER_X_FORWARDED_AWS_ELB;
-}
+}//end class

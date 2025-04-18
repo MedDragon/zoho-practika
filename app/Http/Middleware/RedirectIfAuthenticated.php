@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * RedirectIfAuthenticated Middleware
+ *
+ * This middleware checks if the user is authenticated, and if so, redirects
+ * them to the home route. If not authenticated, the request is passed to the
+ * next middleware.
+ *
+ * @package App\Http\Middleware
+ */
+
 namespace App\Http\Middleware;
 
 use App\Providers\RouteServiceProvider;
@@ -13,7 +23,12 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * This method checks if the user is authenticated and if so, redirects them to the home page.
+     *
+     * @param  \Illuminate\Http\Request $request   The incoming request.
+     * @param  \Closure                 $next      The next middleware to be executed.
+     * @param  string                   ...$guards Guards for different types of authentication (optional).
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
@@ -26,5 +41,5 @@ class RedirectIfAuthenticated
         }
 
         return $next($request);
-    }
-}
+    }//end handle()
+}//end class

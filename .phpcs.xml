@@ -7,13 +7,22 @@
     <file>resources/views/</file>
 
     <rule ref="PSR12"/>
+    <rule ref="Squiz.Commenting"/>
 
     <arg name="encoding" value="utf-8"/>
     <arg name="tab-width" value="4"/>
     <arg name="extensions" value="php"/>
 
-    <description>PSR-12 coding standard</description>
-    <rule ref="PSR12"/>
-    <exclude-pattern>vendor/*</exclude-pattern>
-    <exclude-pattern>storage/*</exclude-pattern>
+    <!-- Включити виключення для порожніх рядків перед коментарем -->
+    <exclude name="Generic.Commenting.EmptyLineBeforeComment" />
+
+    <!-- Виключення для відсутності тегу @subpackage -->
+    <exclude name="Squiz.Commenting.MissingDocCommentTag" />
+
+    <!-- Виключення для коментарів після закриваючих дужок -->
+    <exclude name="Generic.PHP.ClosingBrace" />
+
+    <!-- Виключення для відсутності типів даних у параметрах -->
+    <exclude name="PHP.TypeHints" />
+
 </ruleset>
