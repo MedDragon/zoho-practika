@@ -156,3 +156,10 @@ npm run prod
 Перевірити помилки у логах:
 
 tail -f storage/logs/laravel.log
+
+### Git hooks
+
+1. Встановіть pre-commit:
+   ```bash
+   pip install pre-commit
+   

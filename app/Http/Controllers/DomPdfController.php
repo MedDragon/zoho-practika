@@ -8,6 +8,12 @@ use ZohoCrmSDK\Api\ZohoCrmApi;
 
 class DomPdfController extends Controller
 {
+    /**
+     * Генерує PDF-документ з переданими даними угод і прикріплює його до облікового запису Zoho.
+     *
+     * @param array $data Масив з інформацією про угоди.
+     * @return string Шлях до збереженого PDF-файлу.
+     */
     public function createPDF($data): string
     {
 //        о print_r($data);

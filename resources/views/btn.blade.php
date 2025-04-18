@@ -37,7 +37,7 @@
         let sendDataAccauntsButton = document.getElementById('sendDataAccaunts');
         let dataList = document.getElementById('data__list');
 
-        // Обробник події кліку на кнопку
+        // Надсилає вибрані угоди на сервер для обробки
         sendDataAccauntsButton.addEventListener('click', function(e) {
             e.preventDefault();
             let selectedOptions = Array.from(dataList.selectedOptions);
@@ -68,6 +68,7 @@
                 });
         });
 
+        // Отримує список угод, пов’язаних з обліковим записом
         ZOHO.embeddedApp.on("PageLoad", async function (data) {
             console.log("data="+ data?.EntityId[0]);
             let accID = data?.EntityId[0];

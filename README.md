@@ -89,3 +89,36 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - PHP 8.x
 - Laravel
 - DomPDF
+
+
+## Документування коду
+
+Проєкт дотримується стандарту **PHPDoc** для опису класів, методів та параметрів у коді. Це дозволяє легко читати код, підтримувати його та автоматично генерувати документацію (наприклад, за допомогою `phpDocumentor` або `Doctum`).
+
+### Приклад:
+
+```php
+/**
+ * Отримує інформацію про угоди та генерує PDF.
+ *
+ * @param Request $request
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function handleWebhook(Request $request)
+{
+    ...
+}
+
+Вимоги до документування:
+Обов’язково описувати всі методи контролерів.
+
+Документувати всі вхідні параметри (@param) і повертаємі значення (@return).
+
+Описувати логіку методу коротким реченням.
+
+Для REST API — використовувати OpenAPI або Laravel Swagger.
+
+Інструменти для генерації документації:
+phpDocumentor
+
+Doctum

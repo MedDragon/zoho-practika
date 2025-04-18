@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0405cf330bfaa7205abf3e6636bda5d",
+    "content-hash": "10541e1c0accdeaf1b46365390fc2ffb",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -8669,6 +8669,42 @@
             "time": "2023-02-07T11:34:05+00:00"
         },
         {
+            "name": "smgladkovskiy/phpcs-git-pre-commit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smgladkovskiy/phpcs-git-pre-commit.git",
+                "reference": "5b8e5d64f75d1d290cc41d8dde80cde3f84a9a6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smgladkovskiy/phpcs-git-pre-commit/zipball/5b8e5d64f75d1d290cc41d8dde80cde3f84a9a6a",
+                "reference": "5b8e5d64f75d1d290cc41d8dde80cde3f84a9a6a",
+                "shasum": ""
+            },
+            "require": {
+                "squizlabs/php_codesniffer": "^2.7 || ^3.0"
+            },
+            "default-branch": true,
+            "type": "scripts",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Gladkovskiy",
+                    "email": "smgladkovskiy@gmail.com"
+                }
+            ],
+            "description": "PHPCS check before commit",
+            "support": {
+                "issues": "https://github.com/smgladkovskiy/phpcs-git-pre-commit/issues",
+                "source": "https://github.com/smgladkovskiy/phpcs-git-pre-commit/tree/master"
+            },
+            "time": "2022-04-12T06:32:30+00:00"
+        },
+        {
             "name": "spatie/backtrace",
             "version": "1.6.2",
             "source": {
@@ -9257,7 +9293,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "crmoz/zoho-crm-sdk-v2": 20
+        "crmoz/zoho-crm-sdk-v2": 20,
+        "smgladkovskiy/phpcs-git-pre-commit": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

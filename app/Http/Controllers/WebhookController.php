@@ -7,6 +7,12 @@ use ZohoCrmSDK\Api\ZohoCrmApi;
 
 class WebhookController extends Controller
 {
+    /**
+     * Обробляє webhook-запит від Zoho CRM і генерує PDF з інформацією про угоди.
+     *
+     * @param Request $request Запит, що містить масив ідентифікаторів угод.
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function handleWebhook(Request $request)
     {
         // Отримуємо всі дані з запиту

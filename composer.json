@@ -22,6 +22,7 @@
         "nunomaduro/collision": "^7.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^10.1",
+        "smgladkovskiy/phpcs-git-pre-commit": "dev-master",
         "spatie/laravel-ignition": "^2.0",
         "squizlabs/php_codesniffer": "^3.12"
     },
@@ -38,6 +39,9 @@
         }
     },
     "scripts": {
+        "install-hooks": ["sh ./vendor/smgladkovskiy/phpcs-git-pre-commit/src/setup.sh"],
+        "post-install-cmd": ["@install-hooks"],
+        "post-update-cmd": ["@install-hooks"],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

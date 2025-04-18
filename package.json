@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+        "type-check": "tsc --noEmit"
     },
     "devDependencies": {
         "axios": "^1.6.4",
