@@ -28,9 +28,11 @@ return [
     |
     */
 
-    'compiled' => env(
-        'VIEW_COMPILED_PATH',
-        realpath(storage_path('framework/views'))
-    ),
+//    'compiled' => env(
+//        'VIEW_COMPILED_PATH',
+//        realpath(storage_path('framework/views'))
+//    ), i do
+
+    'compiled' => '/home/user/www/2024/zoho-practika/storage/framework/views',
 
 ];

@@ -159,7 +159,7 @@ return [
         /*
          * Package Service Providers...
          */
-        ZohoCrmSDK\ServiceProvider::class,
+        // я зробив ZohoCrmSDK\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Application Service Providers...

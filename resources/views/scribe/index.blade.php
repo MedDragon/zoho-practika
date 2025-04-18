@@ -72,7 +72,7 @@
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
-                                <a href="#endpoints-GETapi-user">GET api/user</a>
+                                <a href="#endpoints-GETapi-user">API routes for the application.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -110,12 +110,13 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
+                                <h2 id="endpoints-GETapi-user">API routes for the application.</h2>
 
 <p>
 </p>
 
-
+<p>This file defines routes that are loaded by the RouteServiceProvider and
+assigned to the &quot;api&quot; middleware group.</p>
 
 <span id="example-requests-GETapi-user">
 <blockquote>Example request:</blockquote>

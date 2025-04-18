@@ -12,8 +12,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'API routes for the application.'
+      description: |-
+        This file defines routes that are loaded by the RouteServiceProvider and
+        assigned to the "api" middleware group.
       authenticated: false
       custom: []
     headers:
